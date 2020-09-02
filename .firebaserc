@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "default": "policereportsdg"
+  },
+  "targets": {
+    "policereportsdg": {
+      "hosting": {
+        "public": [
+          "policereportsdg"
+        ],
+        "dashboard": [
+          "prsdgdashboard"
+        ]
+      }
+    }
+  }
+}
