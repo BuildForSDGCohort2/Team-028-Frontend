@@ -3,64 +3,117 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
-
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/7.19.1/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/7.19.1/firebase-auth.js"></script>
-    <script defer src="/__/firebase/7.19.1/firebase-database.js"></script>
-    <script defer src="/__/firebase/7.19.1/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/7.19.1/firebase-storage.js"></script>
-    <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
-
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
-      }
-    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Report Closest Incident</title>
   </head>
-  <body>
-    <div id="message">
-      <h1>Public Facing Frontend</h1>
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
-    </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
-
+  <body class="lead">
+    <main class="mb-5 py-3">
+      <div class="container">
+        <h2>Report</h2>
+        <p>Please accurately fill the following info to enable us handle the emergency properly.</p>
+        <form method="POST" class="needs-validation" novalidate>
+          <h3>About the incident</h3>
+          <div class="form-group">
+            <label for="inputTitle">Title</label>
+            <input name="title" type="text" minlength="5" class="form-control" id="inputTitle" placeholder="Example: Robbery of .., Accident at .." required>
+            <div class="invalid-feedback">Summarize the incident in a heading</div>
+          </div>
+          <div class="form-group">
+            <label for="inputDescription">Description</label>
+            <textarea name="description" type="text" minlength="25" rows="3" class="form-control" id="inputDescription" placeholder="It occured by ... The venue has a ..." required></textarea>
+            <div class="invalid-feedback">Please describe in details</div>
+          </div>
+          <div class="form-group">
+            <label for="inputAddress">Full Address</label>
+            <input name="address" type="text" class="form-control" id="inputAddress" placeholder="Opp Bui.., No 1, ABC Street, ..." required>
+            <div class="invalid-feedback">Incident's full address is needed!</div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="inputState">State</label>
+              <select name="state" id="inputState" class="form-control" required>
+                <option>Choose...</option>
+                <option>...</option>
+              </select>
+              <div class="invalid-feedback">State is needed!</div>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputLGA">Local Government</label>
+              <select name="lga" id="inputLGA" class="form-control" required>
+                <option>Choose...</option>
+                <option>...</option>
+              </select>
+              <div class="invalid-feedback">Local Government is needed!</div>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputCity">Town or City</label>
+              <input name="city" type="text" class="form-control" id="inputCity" required>
+              <div class="invalid-feedback">Town or City is needed!</div>
+            </div>
+          </div>
+          <h3>About you</h3>
+          <small>We don't share your identification information and use it solely to get more info</small>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputName">Full Name</label>
+              <input name="name" type="text" minlength="3" class="form-control" id="inputName" required>
+              <div class="invalid-feedback">Please tell us your name!</div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputEmail">Email</label>
+              <input name="phone" type="email" class="form-control" id="inputEmail" required>
+              <div class="invalid-feedback">Please provide your email!</div>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputPhone">Phone Number</label>
+              <input name="phone" type="tel" pattern="^(0|\+234|234)?[789][01]\d{8}$" class="form-control" id="inputPhone" required>
+              <div class="invalid-feedback">Please provide a valid Nigerian Phone Number!</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="gridCheck" required>
+              <label class="form-check-label" for="gridCheck">
+                I accertain that the above info is correct
+              </label>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Report</button>
+        </form>
+      </div>      
+    </main>
+    <footer class="py-3 bg-dark text-white text-center font-weight-bold">
+      <p class="m-0">Police Report &copy;2020 All Rights Reserved.</p>
+    </footer>
+    <script defer src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-
-        try {
-          let app = firebase.app();
-          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-          document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
-        }
-      });
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+        var forms = document.getElementsByClassName('needs-validation');
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            form.classList.add('was-validated');
+            if (form.checkValidity() === false) {
+              event.stopPropagation();
+            } else {
+              console.log(Object.fromEntries(new FormData(form)));
+              form.classList.remove('was-validated');
+              form.reset();
+            }
+          }, false);
+        });
+      }, false);
+    })();
     </script>
+    <script defer src="/__/firebase/7.19.1/firebase-app.js"></script>
+    <script defer src="/__/firebase/7.19.1/firebase-auth.js"></script>
+    <script defer src="/__/firebase/7.19.1/firebase-analytics.js"></script>
+    <script defer src="/__/firebase/7.19.1/firebase-firestore.js"></script>
+    <script defer src="/__/firebase/7.19.1/firebase-storage.js"></script>
+    <script defer src="/__/firebase/init.js"></script>
   </body>
 </html>
